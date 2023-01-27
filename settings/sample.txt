@@ -1,0 +1,36 @@
+{
+
+
+    "general"       : {
+                       "device"                     : "cuda",
+                       "output directory"           : "./output"
+                      },
+
+
+    "model"         : {
+                       "number of epochs"           : 20,
+                       "number of input channels"   : 1,
+                       "number of output channels"  : 2,
+                       "kernel size"                : [3, 3],
+                       "number of hidden channels"  : 12,
+                       "learning rate"              : 0.0001,
+                       "save at every"              : 1
+                      },
+
+
+    "hologram"      : {
+                       "propagation type"           : "Bandlimited Angular Spectrum",
+                       "wavelength"                 : 0.000000515,
+                       "pixel pitch"                : 0.00000374,
+                       "distances"                  : [0.3, -0.3],
+                       "delta"                      : 0.001,
+                       "number of planes"           : 6
+                      },
+                       
+
+    "train dataset" : {
+                       "directory"                  : "./dataset/train4k/train"
+                      }
+    
+
+}
