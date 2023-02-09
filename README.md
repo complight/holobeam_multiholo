@@ -18,7 +18,6 @@ If you need support beyond these `README.md` files, please do not hesitate to re
 If you find this repository useful for your research, please consider citing our work using the below `BibTeX entry`.
 ```bibtex
 @ARTICLE{aksit2023holobeam,
-  preview  = {holobeam.png},
   title    = "HoloBeam: Paper-Thin Near-Eye Displays",
   author   = "Akşit, Kaan and Itoh, Yuta",
   journal  = "IEEE VR 2023",
@@ -49,7 +48,7 @@ Once you have the main dependency installed, you can run the code base using the
 git clone git@github.com:complight/multiholo.git
 ```
 ```shell
-cd holohdr
+cd multiholo
 ```
 ```shell
 python3 main.py
