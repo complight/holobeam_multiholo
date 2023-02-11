@@ -55,7 +55,7 @@ python3 main.py
 ```
 
 
-### (3) Reconfiguring the code for your needs
+### (2) Reconfiguring the code for your needs
 Please consult the settings file found in `settings/sample.txt`, where you will find a list of self descriptive variables that you can modify according to your needs.
 This way, you can create a new settings file or modify the existing one.
 By typing,
