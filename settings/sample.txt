@@ -3,7 +3,7 @@
 
     "general"       : {
                        "device"                     : "cuda",
-                       "output directory"           : "./output"
+                       "output directory"           : "~/output/holobeam_multi"
                       },
 
 

@@ -128,7 +128,7 @@ def main(
               directory=settings["general"]["output directory"],
               save_at_every=settings["model"]["save at every"]
              )
-    model.save_weights(filename='./{}/weights.pt'.format(settings["general"]["output directory"]))
+    model.save_weights(filename='{}/weights.pt'.format(settings["general"]["output directory"]))
 
 
 if '__main__' == '__main__':

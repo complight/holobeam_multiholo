@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -25,11 +26,12 @@ class holobeam_multiholo(nn.Module):
                         Default device is CPU.
     """
     def __init__(self,
-                 n_input=1,
-                 n_hidden=16,
-                 n_output=2,
-                 kernel_size=(7, 7),
-                 device=None):
+                 n_input = 1,
+                 n_hidden = 16,
+                 n_output = 2,
+                 kernel_size = (7, 7),
+                 device = torch.device('cpu')
+                ):
         super(holobeam_multiholo, self).__init__()
         torch.random.seed()
         self.device = device
@@ -106,8 +108,8 @@ class holobeam_multiholo(nn.Module):
             description = 'Epoch Loss:{:.4f}'.format(epoch_loss)
             t_epoch.set_description(description)
             if i % save_at_every == 0:
-                self.save_weights(filename='./{}/weights_{:04d}.pt'.format(directory, i))
-        self.save_weights(filename='./{}/weights.pt'.format(directory))
+                self.save_weights(filename='{}/weights_{:04d}.pt'.format(directory, i))
+        self.save_weights(filename='{}/weights.pt'.format(directory))
         print(description)
 
     
@@ -177,7 +179,7 @@ class holobeam_multiholo(nn.Module):
         filename        : str
                           Filename.
         """
-        torch.save(self.network.state_dict(), filename)
+        torch.save(self.network.state_dict(), os.path.expanduser(filename))
 
 
     def load_weights(self, filename='./weights.pt'):
@@ -188,5 +190,5 @@ class holobeam_multiholo(nn.Module):
         filename        : str
                           Filename.
         """
-        self.network.load_state_dict(torch.load(filename))
+        self.network.load_state_dict(torch.load(os.path.expanduser(filename)))
         self.network.eval()
