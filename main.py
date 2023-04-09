@@ -9,7 +9,7 @@ import utils
 import time
 
 
-__title__ = 'Holographic Diffuser'
+__title__ = 'Holobeam'
 
 
 def main(
