@@ -6,7 +6,7 @@ from tqdm import tqdm
 from .unet import *
 
 
-class holobeam(nn.Module):
+class holobeam_multiholo(nn.Module):
     """
 
     Parameters
@@ -30,7 +30,7 @@ class holobeam(nn.Module):
                  n_output=2,
                  kernel_size=(7, 7),
                  device=None):
-        super(holographic_diffuser, self).__init__()
+        super(holobeam_multiholo, self).__init__()
         torch.random.seed()
         self.device = device
         if isinstance(self.device, type(None)):
