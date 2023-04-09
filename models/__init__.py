@@ -6,14 +6,8 @@ from tqdm import tqdm
 from .unet import *
 
 
-class holographic_diffuser(nn.Module):
+class holobeam(nn.Module):
     """
-    A differentiable class for adding noise to a given data. Portions of this class is inspired from:
-    - Ho et al., "Denoising Diffusion Probabilistic Models", https://doi.org/10.48550/arXiv.2006.11239
-    - https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/annotated_diffusion.ipynb
-    - Croitoru et al., "Diffusion Models in Vision: A Survey", https://doi.org/10.48550/arXiv.2209.04747
-    - Bansal et al., "Cold Diffusion: Inverting Arbitrary Image Transforms Without Noise", https://doi.org/10.48550/arXiv.2208.09392
-
 
     Parameters
     ----------
