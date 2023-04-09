@@ -54,13 +54,13 @@ def main(
     if settings["general"]["device"] == 'cuda':
         torch.cuda.set_device(cuda_device)
     odak.tools.check_directory(settings["general"]["output directory"])
-    model = models.holographic_diffuser(
-                                        kernel_size=settings["model"]["kernel size"],
-                                        n_input=settings["model"]["number of input channels"],
-                                        n_hidden=settings["model"]["number of hidden channels"],
-                                        n_output=settings["model"]["number of output channels"],
-                                        device=device
-                                       )
+    model = models.holobeam(
+                            kernel_size=settings["model"]["kernel size"],
+                            n_input=settings["model"]["number of input channels"],
+                            n_hidden=settings["model"]["number of hidden channels"],
+                            n_output=settings["model"]["number of output channels"],
+                            device=device
+                           )
     if not isinstance(weights_filename, type(None)):
         model.load_weights(weights_filename)
     if not isinstance(input_filename, type(None)):
