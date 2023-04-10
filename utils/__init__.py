@@ -1,3 +1,4 @@
+import os
 import torch
 import odak
 from torchvision import transforms
@@ -17,7 +18,7 @@ class hologram_dataset(Dataset):
         
     def __getitem__(self, index):
         self.filename = self.filenames[index]
-        data = torch.load(self.filename).to(self.device)
+        data = torch.load(os.path.expanduser(self.filename)).to(self.device)
         data = (data - 0.5) * 2
         return data
 
