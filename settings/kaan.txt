@@ -29,7 +29,7 @@
                        
 
     "train dataset" : {
-                       "directory"                  : "/mnt/yedek/datasets/holograms_4k/"
+                       "directory"                  : "~/datasets/holograms_4k/"
                       }
     
 
