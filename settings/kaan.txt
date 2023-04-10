@@ -29,7 +29,8 @@
                        
 
     "train dataset" : {
-                       "directory"                  : "~/datasets/holograms_4k/"
+                       "directory"                  : "~/datasets/holograms_4k/",
+                       "shuffle"                    : 1
                       }
     
 

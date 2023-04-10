@@ -29,7 +29,8 @@
                        
 
     "train dataset" : {
-                       "directory"                  : "./dataset/train"
+                       "directory"                  : "./dataset/train",
+                       "shuffle"                    : 0
                       }
     
 

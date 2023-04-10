@@ -120,15 +120,23 @@ def main(
                                            directory=settings['train dataset']['directory'],
                                            device=device
                                           )
-    train_dataloader = DataLoader(train_dataset, batch_size=1, shuffle=True)
-    model.fit(
-              train_dataloader,
-              number_of_epochs=settings["model"]["number of epochs"],
-              learning_rate=settings["model"]["learning rate"],
-              directory=settings["general"]["output directory"],
-              save_at_every=settings["model"]["save at every"]
-             )
-    model.save_weights(filename='{}/weights.pt'.format(settings["general"]["output directory"]))
+    train_dataloader = DataLoader(train_dataset, batch_size = 1, shuffle = settings['train dataset']['shuffle'])
+    weights_filename = '{}/weights.pt'.format(settings["general"]["output directory"])
+    try:
+        model.fit(
+                  train_dataloader,
+                  number_of_epochs=settings["model"]["number of epochs"],
+                  learning_rate=settings["model"]["learning rate"],
+                  directory=settings["general"]["output directory"],
+                  save_at_every=settings["model"]["save at every"]
+                 )
+        odak.tools.check_directory(settings["general"]["output directory"])
+        model.save_weights(filename=weights_filename)
+    except:
+        odak.tools.check_directory(settings["general"]["output directory"])
+        model.save_weights(filename=weights_filename)
+        print('Training exited and weights are saved to {}'.format(weights_filename))
+
 
 
 if '__main__' == '__main__':
