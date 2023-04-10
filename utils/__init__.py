@@ -24,5 +24,4 @@ class hologram_dataset(Dataset):
 
 
     def __len__(self):
-        return 100
         return len(self.filenames)
