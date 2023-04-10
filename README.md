@@ -36,7 +36,7 @@ Before using this code in this repository, please make sure to have the right de
 In order to install the main dependency used in this project, please make sure to use the below syntax in a Unix/Linux shell:
 
 
-```shell
+```bash
 pip3 install git+https://github.com/kaanaksit/odak
 ```
 
@@ -44,13 +44,13 @@ pip3 install git+https://github.com/kaanaksit/odak
 ### (1) Runtime
 Once you have the main dependency installed, you can run the code base using the default settings by providing the below syntax:
 
-```shell
-git clone git@github.com:complight/multiholo.git
+```bash
+git clone git@github.com:complight/holobeam_multiholo.git
 ```
-```shell
-cd multiholo
+```bash
+cd holobeam_multiholo
 ```
-```shell
+```bash
 python3 main.py
 ```
 
@@ -59,14 +59,14 @@ python3 main.py
 Please consult the settings file found in `settings/sample.txt`, where you will find a list of self descriptive variables that you can modify according to your needs.
 This way, you can create a new settings file or modify the existing one.
 By typing,
-```shell
+```bash
 python3 main.py --help
 ```
 You can reach to the information for training and estimating using this work.
 
 
 If you are willing to use the code with another settings file, please use the following syntax:
-```shell
+```bash
 python3 main.py --settings settings/sample.txt
 ```
 
