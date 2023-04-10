@@ -24,21 +24,23 @@ class holobeam_multiholo(nn.Module):
                         Lower and upper bound in variance.
     device            : torch.device
                         Default device is CPU.
+    reduction         : str
+                        Reduction used for torch.nn.MSELoss and torch.nn.L1Loss. The default is 'sum'.
     """
     def __init__(self,
                  n_input = 1,
                  n_hidden = 16,
                  n_output = 2,
                  kernel_size = (7, 7),
-                 device = torch.device('cpu')
+                 device = torch.device('cpu'),
+                 reduction = 'sum'
                 ):
         super(holobeam_multiholo, self).__init__()
         torch.random.seed()
         self.device = device
-        if isinstance(self.device, type(None)):
-            self.device = torch.device('cpu')
-        self.l2 = torch.nn.MSELoss()
-        self.l1 = torch.nn.L1Loss()
+        self.reduction = reduction
+        self.l2 = torch.nn.MSELoss(reduction = self.reduction)
+        self.l1 = torch.nn.L1Loss(reduction = self.reduction)
         self.n_input = n_input
         self.n_hidden = n_hidden
         self.n_output = n_output
