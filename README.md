@@ -54,6 +54,17 @@ cd holobeam_multiholo
 python3 main.py
 ```
 
+A trained model could be trialed using the following syntax:
+
+```bash
+python3 main.py --weights weights/weights.pt --settings settings/sample.txt --input ./dataset/train/data_0000.pt
+```
+
+Indeed make sure to change the locations of your weights, settings and inputs with the location of your weights, inputs and settings.
+Note that your inputs must be in `*.pt` format.
+Each `*.pt` file used in training contains a target and hologram.
+However, at the test time, all you need is a target, so you can simply create an input file with an image and a hologram filled with zeros.
+
 
 ### (2) Reconfiguring the code for your needs
 Please consult the settings file found in `settings/sample.txt`, where you will find a list of self descriptive variables that you can modify according to your needs.
