@@ -27,12 +27,12 @@ def main(
     parser.add_argument(
                         '--weights',
                         type = argparse.FileType('r'),
-                        help = 'Filename for the weights file. Default is {}.'.format(settings_filename)
+                        help = 'Filename for the weights file.'
                        )
     parser.add_argument(
                         '--input',
                         type = argparse.FileType('r'),
-                        help = 'Filename for an input data to estimate. Default is {}.'.format(input_filename)
+                        help = 'Filename for an input data to estimate. Any RGB png file is good.'
                        )
     args = parser.parse_args()
     if not isinstance(args.settings, type(None)):
@@ -53,10 +53,10 @@ def main(
     if not isinstance(weights_filename, type(None)):
         model.load_weights(weights_filename)
     if not isinstance(input_filename, type(None)):
-        input_data = torch.load(input_filename).to(device).unsqueeze(0)
+        input_data = odak.learn.tools.load_image(input_filename, normalizeby = 255., torch_style = True).to(device).unsqueeze(0)
         input_data = (input_data - 0.5) * 2
         model_input = torch.zeros(
-                                  input_data.shape[0], 
+                                  4, 
                                   settings["model"]["number of input channels"], 
                                   input_data.shape[-2], 
                                   input_data.shape[-1]
