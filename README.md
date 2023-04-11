@@ -11,6 +11,9 @@ and [Yuta Itoh](https://www.ar.c.titech.ac.jp/people/yuta-itoh)
 ## Description
 In this repository you will find the codebase for the learned model discussed in our work.
 This work extends our previous [optimization Computer-Generated Holography (CGH) pipeline](https://github.com/complight/realistic_defocus) by converting it into a learned model.
+With this work, you can estimate a 3D hologram from a 2D input image without any depth map.
+So all a user needs is a 2D image to generate a hologram.
+This way, the most common media type images could be directly converted into 3D holograms, and their depths could be estimated by our algorithm in the hologram estimation process.
 If you need support beyond these `README.md` files, please do not hesitate to reach us using `issues` section.
 
 
