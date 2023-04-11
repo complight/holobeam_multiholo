@@ -8,13 +8,12 @@
 
 
     "model"         : {
-                       "number of epochs"           : 20,
+                       "number of epochs"           : 10000,
                        "number of input channels"   : 1,
                        "number of output channels"  : 2,
-                       "kernel size"                : [3, 3],
                        "number of hidden channels"  : 12,
-                       "learning rate"              : 0.0001,
-                       "save at every"              : 1
+                       "learning rate"              : 1e-4,
+                       "save at every"              : 1000
                       },
 
 

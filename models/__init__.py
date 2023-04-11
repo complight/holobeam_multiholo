@@ -1,13 +1,11 @@
 import os
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 import odak
 from tqdm import tqdm
-from .unet import *
+from .unet import UNet
 
 
-class holobeam_multiholo(nn.Module):
+class holobeam_multiholo(torch.nn.Module):
     """
 
     Parameters
@@ -31,7 +29,6 @@ class holobeam_multiholo(nn.Module):
                  n_input = 1,
                  n_hidden = 16,
                  n_output = 2,
-                 kernel_size = (7, 7),
                  device = torch.device('cpu'),
                  reduction = 'sum'
                 ):
@@ -45,9 +42,9 @@ class holobeam_multiholo(nn.Module):
         self.n_hidden = n_hidden
         self.n_output = n_output
         self.network = UNet(
-                            dims=self.n_hidden,
-                            in_channels=self.n_input,
-                            out_channels=self.n_output
+                            dims = self.n_hidden,
+                            in_channels = self.n_input,
+                            out_channels = self.n_output
                            ).to(self.device)
 
 

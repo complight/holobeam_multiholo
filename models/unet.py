@@ -1,12 +1,7 @@
-""" Full assembly of the parts to form the complete network """
-import torch
 import torch.nn as nn
-import torch.optim as optim
 
-import torch.nn.functional as F
-from .unet_parts import *
+from .unet_parts import DoubleConv, Down, Up, OutConv
 
-import math
 
 class Res_Block(nn.Module):
     def __init__(self, dims=32):

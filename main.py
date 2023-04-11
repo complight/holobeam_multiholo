@@ -13,32 +13,26 @@ __title__ = 'Holobeam'
 
 
 def main(
-        settings_filename='./settings/sample.txt',
-        weights_filename=None,
-        input_filename=None,
-        cuda_device=0,
-        mode='train'
+        settings_filename = './settings/sample.txt',
+        weights_filename = None,
+        input_filename = None,
+        mode = 'train'
         ):
     parser = argparse.ArgumentParser(description=__title__)
     parser.add_argument(
                         '--settings',
-                        type=argparse.FileType('r'),
-                        help='Filename for the settings file. Default is {}.'.format(settings_filename)
-                       )
-    parser.add_argument(
-                        '--cuda',
-                        type=int,
-                        help='CUDA device number. Default is {}.'.format(cuda_device)
+                        type = argparse.FileType('r'),
+                        help = 'Filename for the settings file. Default is {}.'.format(settings_filename)
                        )
     parser.add_argument(
                         '--weights',
-                        type=argparse.FileType('r'),
-                        help='Filename for the weights file. Default is {}.'.format(settings_filename)
+                        type = argparse.FileType('r'),
+                        help = 'Filename for the weights file. Default is {}.'.format(settings_filename)
                        )
     parser.add_argument(
                         '--input',
-                        type=argparse.FileType('r'),
-                        help='Filename for an input data to estimate. Default is {}.'.format(input_filename)
+                        type = argparse.FileType('r'),
+                        help = 'Filename for an input data to estimate. Default is {}.'.format(input_filename)
                        )
     args = parser.parse_args()
     if not isinstance(args.settings, type(None)):
@@ -47,19 +41,14 @@ def main(
         weights_filename = str(args.weights.name)
     if not isinstance(args.input, type(None)):
         input_filename = str(args.input.name)
-    if not isinstance(args.cuda, type(None)):
-        cuda_device = args.cuda
     settings = odak.tools.load_dictionary(settings_filename)
     device = torch.device(settings["general"]["device"])
-    if settings["general"]["device"] == 'cuda':
-        torch.cuda.set_device(cuda_device)
     odak.tools.check_directory(settings["general"]["output directory"])
     model = models.holobeam_multiholo(
-                                      kernel_size=settings["model"]["kernel size"],
-                                      n_input=settings["model"]["number of input channels"],
-                                      n_hidden=settings["model"]["number of hidden channels"],
-                                      n_output=settings["model"]["number of output channels"],
-                                      device=device
+                                      n_input = settings["model"]["number of input channels"],
+                                      n_hidden = settings["model"]["number of hidden channels"],
+                                      n_output = settings["model"]["number of output channels"],
+                                      device = device
                                      )
     if not isinstance(weights_filename, type(None)):
         model.load_weights(weights_filename)
@@ -78,20 +67,8 @@ def main(
                                     cmin=0.,
                                     cmax=1.
                                    )
-        t_total = 0
-        m = 1 #### SET THIS TO A HIGH NUMBER TO FIND OUT HOW FAST THE METHOD IS
-        k = 10
-        for i in range(m):
-            t_start = time.time_ns()
-            torch.no_grad()
-            estimate = model.forward(model_input).detach()
-            t_finish = time.time_ns()
-            t_delta = (t_finish - t_start) / (10 ** 9)
-            if i > k:
-                print('It took ', t_delta, 'seconds to estimate.')
-                t_total += t_delta / (m - k)
-        if m > 1:
-           print('It took', t_total, 'seconds on average to estimate')
+        torch.no_grad()
+        estimate = model.forward(model_input).detach()
         odak.learn.tools.save_image('{}/estimate_phase.png'.format(settings["general"]["output directory"]), estimate[0, 0], cmin=0., cmax=1.)
         scene_center = settings["hologram"]["delta"] * (settings["hologram"]["number of planes"] - 1) / 2.
         for i in range(settings["hologram"]["number of planes"]):
@@ -99,10 +76,10 @@ def main(
             distances[1] = distances[1] - scene_center + i * settings["hologram"]["delta"]
             reconstruction_intensity, _, _ = model.reconstruct(
                                                                estimate,
-                                                               distances=distances,
-                                                               pixel_pitch=settings["hologram"]["pixel pitch"],
-                                                               wavelength=settings["hologram"]["wavelength"],
-                                                               propagation_type=settings["hologram"]["propagation type"]
+                                                               distances = distances,
+                                                               pixel_pitch = settings["hologram"]["pixel pitch"],
+                                                               wavelength = settings["hologram"]["wavelength"],
+                                                               propagation_type = settings["hologram"]["propagation type"]
                                                               )
             odak.learn.tools.save_image('{}/estimate_reconstruction_{:04d}.png'.format(settings["general"]["output directory"], i), reconstruction_intensity, cmin=0., cmax=1.)
             hologram_phase = input_data[0, 2].unsqueeze(0).unsqueeze(0)
@@ -131,10 +108,10 @@ def main(
                   save_at_every=settings["model"]["save at every"]
                  )
         odak.tools.check_directory(settings["general"]["output directory"])
-        model.save_weights(filename=weights_filename)
+        model.save_weights(filename = weights_filename)
     except:
         odak.tools.check_directory(settings["general"]["output directory"])
-        model.save_weights(filename=weights_filename)
+        model.save_weights(filename = weights_filename)
         print('Training exited and weights are saved to {}'.format(weights_filename))
 
 
