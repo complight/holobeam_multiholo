@@ -88,11 +88,11 @@ class holobeam_multiholo(torch.nn.Module):
         save_at_every    : int
                            Save the model at every given epoch count.
         """
-        t_epoch = tqdm(range(number_of_epochs), leave=False)
+        t_epoch = tqdm(range(number_of_epochs), leave=False, dynamic_ncols = True)
         self.optimizer = torch.optim.Adam(self.parameters(), lr=learning_rate)
         for i in t_epoch:
             epoch_loss = 0.
-            t_data = tqdm(dataloader, leave=False)
+            t_data = tqdm(dataloader, leave=False, dynamic_ncols = True)
             for j, data in enumerate(t_data):
                 self.optimizer.zero_grad()
                 images = data[:, 0].unsqueeze(1)
