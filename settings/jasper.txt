@@ -8,7 +8,7 @@
 
 
     "model"         : {
-                       "number of epochs"           : 20,
+                       "number of epochs"           : 40,
                        "number of input channels"   : 1,
                        "number of output channels"  : 2,
                        "number of hidden channels"  : 12,
