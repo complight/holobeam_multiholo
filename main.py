@@ -68,7 +68,7 @@ def main(
                                     cmax=1.
                                    )
         torch.no_grad()
-        estimate = model.forward(model_input).detach()
+        estimate = model.forward(model_input.detach().clone(), test = True).detach()
         odak.learn.tools.save_image('{}/estimate_phase.png'.format(settings["general"]["output directory"]), estimate[0, 0], cmin = 0., cmax = 1.)
         scene_center = settings["hologram"]["delta"] * (settings["hologram"]["number of planes"] - 1) / 2.
         for i in range(settings["hologram"]["number of planes"]):
