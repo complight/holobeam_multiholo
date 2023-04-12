@@ -91,10 +91,10 @@ def main(
             hologram_phase = input_data[0, 2].unsqueeze(0).unsqueeze(0)
             reconstruction_intensity, _, _ = model.reconstruct(
                                                                hologram_phase,
-                                                               distances=distances,
-                                                               pixel_pitch=settings["hologram"]["pixel pitch"],
-                                                               wavelength=settings["hologram"]["wavelength"],
-                                                               propagation_type=settings["hologram"]["propagation type"]
+                                                               distances = distances,
+                                                               pixel_pitch = settings["hologram"]["pixel pitch"],
+                                                               wavelength = settings["hologram"]["wavelength"],
+                                                               propagation_type = settings["hologram"]["propagation type"]
                                                               )
             odak.learn.tools.save_image('{}/ground_truth_reconstruction_{:04d}.png'.format(settings["general"]["output directory"], i), reconstruction_intensity, cmin = 0., cmax = 1.)
 
@@ -108,10 +108,10 @@ def main(
     try:
         model.fit(
                   train_dataloader,
-                  number_of_epochs=settings["model"]["number of epochs"],
-                  learning_rate=settings["model"]["learning rate"],
-                  directory=settings["general"]["output directory"],
-                  save_at_every=settings["model"]["save at every"]
+                  number_of_epochs = settings["model"]["number of epochs"],
+                  learning_rate = settings["model"]["learning rate"],
+                  directory = settings["general"]["output directory"],
+                  save_at_every = settings["model"]["save at every"]
                  )
         odak.tools.check_directory(settings["general"]["output directory"])
         model.save_weights(filename = weights_filename)

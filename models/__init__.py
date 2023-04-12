@@ -65,7 +65,7 @@ class holobeam_multiholo(torch.nn.Module):
         return phase_only
 
 
-    def evaluate(self, input_data, ground_truth, weights=[1., 0.1]):
+    def evaluate(self, input_data, ground_truth, weights = [1., 0.1]):
         """
         Internal function for evaluating.
         """
@@ -73,7 +73,7 @@ class holobeam_multiholo(torch.nn.Module):
         return loss
 
 
-    def fit(self, dataloader, number_of_epochs=100, learning_rate=1e-5, directory='./output', save_at_every=100):
+    def fit(self, dataloader, number_of_epochs = 100, learning_rate = 1e-5, directory = './output', save_at_every = 100):
         """
         Function to train the weights of the multi layer perceptron.
 
@@ -116,10 +116,10 @@ class holobeam_multiholo(torch.nn.Module):
     
     def reconstruct(self,
                     phase,
-                    distances=[0.3, -0.3],
-                    pixel_pitch=8e-6,
-                    wavelength=535e-9,
-                    propagation_type='Bandlimited Angular Spectrum'
+                    distances = [0.3, -0.3],
+                    pixel_pitch = 8e-6,
+                    wavelength = 535e-9,
+                    propagation_type = 'Bandlimited Angular Spectrum'
                    ):
         """
         Function to reconstruct a given hologram.
@@ -172,7 +172,7 @@ class holobeam_multiholo(torch.nn.Module):
         return reconstruction_intensity, reconstruction_amplitude, reconstruction_phase
 
 
-    def save_weights(self, filename='./weights.pt'):
+    def save_weights(self, filename = './weights.pt'):
         """
         Function to save the current weights of the multi layer perceptron to a file.
         Parameters
@@ -183,7 +183,7 @@ class holobeam_multiholo(torch.nn.Module):
         torch.save(self.network.state_dict(), os.path.expanduser(filename))
 
 
-    def load_weights(self, filename='./weights.pt'):
+    def load_weights(self, filename = './weights.pt'):
         """
         Function to load weights for this multi layer perceptron from a file.
         Parameters
