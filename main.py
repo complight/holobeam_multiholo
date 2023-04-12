@@ -56,7 +56,7 @@ def main(
         input_data = odak.learn.tools.load_image(input_filename, normalizeby = 255., torch_style = True).to(device).unsqueeze(0)
         input_data = (input_data - 0.5) * 2
         model_input = torch.zeros(
-                                  4, 
+                                  1, 
                                   settings["model"]["number of input channels"], 
                                   input_data.shape[-2], 
                                   input_data.shape[-1]
