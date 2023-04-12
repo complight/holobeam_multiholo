@@ -11,6 +11,9 @@ and [Yuta Itoh](https://www.ar.c.titech.ac.jp/people/yuta-itoh)
 ## Description
 In this repository you will find the codebase for the learned model discussed in our work.
 This work extends our previous [optimization Computer-Generated Holography (CGH) pipeline](https://github.com/complight/realistic_defocus) by converting it into a learned model.
+With this work, you can estimate a 3D hologram from a 2D input image without any depth map.
+So all a user needs is a 2D image to generate a hologram.
+This way, the most common media type images could be directly converted into 3D holograms, and their depths could be estimated by our algorithm in the hologram estimation process.
 If you need support beyond these `README.md` files, please do not hesitate to reach us using `issues` section.
 
 
@@ -53,6 +56,14 @@ cd holobeam_multiholo
 ```bash
 python3 main.py
 ```
+
+A trained model could be trialed using the following syntax:
+
+```bash
+python3 main.py --weights weights/weights.pt --settings settings/sample.txt --input some_1080p_image.png
+```
+
+Indeed make sure to change the locations of your weights, settings and inputs with the location of your weights, inputs and settings.
 
 
 ### (2) Reconfiguring the code for your needs

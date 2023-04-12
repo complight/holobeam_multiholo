@@ -48,10 +48,12 @@ class holobeam_multiholo(torch.nn.Module):
                            ).to(self.device)
 
 
-    def forward(self, x):
+    def forward(self, x, test = False):
         """
         Internal function representing the forward model.
         """
+        if test:
+            torch.no_grad()
         y = self.network.forward(x) 
         phase_low = y[:, 0].unsqueeze(1)
         phase_high = y[:, 1].unsqueeze(1)
