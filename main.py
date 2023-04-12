@@ -69,7 +69,7 @@ def main(
                                    )
         torch.no_grad()
         estimate = model.forward(model_input).detach()
-        odak.learn.tools.save_image('{}/estimate_phase.png'.format(settings["general"]["output directory"]), estimate[0, 0], cmin=0., cmax=1.)
+        odak.learn.tools.save_image('{}/estimate_phase.png'.format(settings["general"]["output directory"]), estimate[0, 0], cmin = 0., cmax = 1.)
         scene_center = settings["hologram"]["delta"] * (settings["hologram"]["number of planes"] - 1) / 2.
         for i in range(settings["hologram"]["number of planes"]):
             distances = settings["hologram"]["distances"].copy()
@@ -81,7 +81,7 @@ def main(
                                                                wavelength = settings["hologram"]["wavelength"],
                                                                propagation_type = settings["hologram"]["propagation type"]
                                                               )
-            odak.learn.tools.save_image('{}/estimate_reconstruction_{:04d}.png'.format(settings["general"]["output directory"], i), reconstruction_intensity, cmin=0., cmax=1.)
+            odak.learn.tools.save_image('{}/estimate_reconstruction_{:04d}.png'.format(settings["general"]["output directory"], i), reconstruction_intensity, cmin = 0., cmax = 1.)
             hologram_phase = input_data[0, 2].unsqueeze(0).unsqueeze(0)
             reconstruction_intensity, _, _ = model.reconstruct(
                                                                hologram_phase,
@@ -90,7 +90,7 @@ def main(
                                                                wavelength=settings["hologram"]["wavelength"],
                                                                propagation_type=settings["hologram"]["propagation type"]
                                                               )
-            odak.learn.tools.save_image('{}/ground_truth_reconstruction_{:04d}.png'.format(settings["general"]["output directory"], i), reconstruction_intensity, cmin=0., cmax=1.)
+            odak.learn.tools.save_image('{}/ground_truth_reconstruction_{:04d}.png'.format(settings["general"]["output directory"], i), reconstruction_intensity, cmin = 0., cmax = 1.)
 
         sys.exit()
     train_dataset = utils.hologram_dataset(
