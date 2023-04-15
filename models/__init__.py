@@ -2,7 +2,6 @@ import os
 import torch
 import odak
 from tqdm import tqdm
-from .unet import UNet
 
 
 class holobeam_multiholo(torch.nn.Module):
@@ -41,11 +40,11 @@ class holobeam_multiholo(torch.nn.Module):
         self.n_input = n_input
         self.n_hidden = n_hidden
         self.n_output = n_output
-        self.network = UNet(
-                            dims = self.n_hidden,
-                            in_channels = self.n_input,
-                            out_channels = self.n_output
-                           ).to(self.device)
+        self.network = odak.learn.models.unet(
+                                              dimensions = self.n_hidden,
+                                              input_channels = self.n_input,
+                                              output_channels = self.n_output
+                                             ).to(self.device)
 
 
     def forward(self, x, test = False):

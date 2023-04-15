@@ -12,7 +12,7 @@
                        "number of input channels"   : 1,
                        "number of output channels"  : 2,
                        "number of hidden channels"  : 12,
-                       "learning rate"              : 0.0001,
+                       "learning rate"              : 1e-4,
                        "save at every"              : 1
                       },
 
