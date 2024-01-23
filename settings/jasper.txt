@@ -1,0 +1,39 @@
+{
+
+
+    "general"       : {
+                       "device"                     : "cuda",
+                       "output directory"           : "~/output/holobeam_multi"
+                      },
+
+
+    "model"         : {
+                       "number of epochs"           : 40,
+                       "number of input channels"   : 1,
+                       "number of output channels"  : 2,
+                       "number of hidden channels"  : 12,
+                       "learning rate"              : 1e-4,
+                       "save at every"              : 1
+                      },
+
+
+    "hologram"      : {
+                       "propagation type"           : "Bandlimited Angular Spectrum",
+                       "propagator type"            : "forward",
+                       "back and forth distance"    : 0.3,
+                       "wavelength"                 : [515e-9],
+                       "pixel pitch"                : 3.74e-6,
+                       "location offset"            : 0.0,
+                       "volume depth"               : 1e-3,
+                       "number of planes"           : 6,
+                       "pinhole size"               : 1800
+                      },
+                       
+
+    "train dataset" : {
+                       "directory"                  : "./dataset/train",
+                       "shuffle"                    : 0
+                      }
+    
+
+}
